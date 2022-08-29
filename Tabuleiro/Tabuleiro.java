@@ -24,6 +24,14 @@ public class Tabuleiro {
 		
 	}
 	
+	public int getLinhas() {
+		return this.linhas;
+	}
+	
+	public int getColunas() {
+		return this.colunas;
+	}
+	
 	// metodo celulas vizinhas
 	
 }
