@@ -1,7 +1,9 @@
 package Celula;
 import java.util.Random;
 
-public class Celula {
+import Tabuleiro.JFrameTabuleiro;
+
+public class Celula extends JFrameTabuleiro {
 	
 	private int valor;
 	private boolean ordenado;

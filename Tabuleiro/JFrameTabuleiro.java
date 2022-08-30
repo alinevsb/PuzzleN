@@ -1,12 +1,15 @@
 package Tabuleiro;
 
 import javax.swing.*;
+import java.awt.*;
+
 import Celula.Celula;
 import Tabuleiro.*;
 
 public class JFrameTabuleiro extends JFrame {
 	
 	Tabuleiro tabuleiro;
+	//JButton[][] celula;
 	
 	public JFrameTabuleiro() {
 		
