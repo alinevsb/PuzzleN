@@ -1,15 +1,13 @@
 package Tabuleiro;
 
 import javax.swing.*;
-import java.awt.*;
-
+import java.awt.GridLayout;
 import Celula.Celula;
 import Tabuleiro.*;
 
 public class JFrameTabuleiro extends JFrame {
 	
 	Tabuleiro tabuleiro;
-	//JButton[][] celula;
 	
 	public JFrameTabuleiro() {
 		
@@ -19,27 +17,38 @@ public class JFrameTabuleiro extends JFrame {
 	
 	public void configs() {
 		
-		this.setTitle("PuzzleN");
-		
-		this.setSize(1000, 600);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-		
-		this.getContentPane().add(panel);
-		
-		this.setVisible(true);
-		
 		tabuleiro = new Tabuleiro();
+		
+		JButton button[][] = new JButton[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+		
+		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
+		
+		this.setTitle("PuzzleN");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600, 600);
+		this.setLayout(grid);
+		this.setResizable(false);
+		
+		/*for(int i=0; i<tabuleiro.getLinhas()*tabuleiro.getColunas(); i++) {
+			JButton button = new JButton();
+			this.add(button);
+		}*/
+		Celula[][] matriz = tabuleiro.getMatriz();
 		
 		for(int i=0; i<tabuleiro.getLinhas(); i++) {
 			for(int j=0; j<tabuleiro.getColunas(); j++) {
 				
+				int valor = matriz[i][j].getValor();
 				
+				String valorString = Integer.toString(valor);
 				
+				button[i][j] = new JButton(valorString); // mudar para classe JButtonCelula
+				
+				this.add(button[i][j]);
 			}
 		}
+		
 	}
 
 }

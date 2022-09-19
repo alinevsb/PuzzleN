@@ -1,25 +1,23 @@
 package Celula;
 import java.util.Random;
 
-import Tabuleiro.JFrameTabuleiro;
-
-public class Celula extends JFrameTabuleiro {
+public class Celula {
 	
 	private int valor;
 	private boolean ordenado;
 	
-	public Celula() {
+	public Celula(int valor) {
 		
-		Random rand = new Random();
+		//Random rand = new Random();
 		
-		int valor = rand.nextInt(10);
+		//int valor = rand.nextInt(10);
 		
 		this.setValor(valor);
 		this.ordenado = false;
 		
 	}
 	
-	public int getValor (int valor) {
+	public int getValor () {
 		
 		return this.valor;
 		

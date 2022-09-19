@@ -4,23 +4,34 @@ package Tabuleiro;
 import Celula.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Collections;
 
 public class Tabuleiro {
 	
 	private int linhas = 3;
 	private int colunas = 3;
 	
-	Celula[][] matriz;
+	Celula[][] matriz; // private
 	
 	public Tabuleiro() {
 		
 		matriz = new Celula[this.linhas][this.colunas];
 		
-		for(int i=0; i<=this.linhas; i++) {
-			for(int j=0; j<=this.colunas; j++) {
-				matriz[i][j] = new Celula();		
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+        for (int i=0; i<9; i++) lista.add(i); // talvez colocar i=1, nao incluir o zero (celula em branco) no shuffle
+        Collections.shuffle(lista);
+        
+        int cont = -1;
+        
+		for(int i=0; i<this.linhas; i++) {
+			for(int j=0; j<this.colunas; j++) {
+				
+				cont++;
+				
+				matriz[i][j] = new Celula(lista.get(cont));
 			}
-			System.out.println();
 		}
 		
 	}
@@ -55,6 +66,7 @@ public class Tabuleiro {
 		return this.colunas;
 	}
 	
-	// metodo celulas vizinhas
-	
+	public Celula[][] getMatriz() {
+		return this.matriz;
+	}
 }
