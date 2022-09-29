@@ -4,12 +4,34 @@ import javax.swing.JButton;
 
 public class JButtonCelula extends JButton {
 	
-	public JButtonCelula() {
+	public JButtonCelula(String valor) {
+
+		this.setText(valor);
 		
-		// settar as caracteristicas do botao
+		configs();
+
+	}
+
+	public JButtonCelula() {
+
+		this.setText("");
+
+		configs();		
 		
 	}
-	
-	// metodos de clique e etc
+
+	public void configs(){
+		this.setOpaque(true);
+		/* caracteristicas do botao
+		*
+		*
+		*
+		*
+		*/ 
+
+		//this.addMouseListener(l);
+	}
+
+	// metodos adicionais do jogo
 
 }

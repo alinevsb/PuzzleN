@@ -19,7 +19,7 @@ public class JFrameTabuleiro extends JFrame {
 		
 		tabuleiro = new Tabuleiro();
 		
-		JButton button[][] = new JButton[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+		JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
 		
@@ -40,15 +40,23 @@ public class JFrameTabuleiro extends JFrame {
 			for(int j=0; j<tabuleiro.getColunas(); j++) {
 				
 				int valor = matriz[i][j].getValor();
+
+				if(valor == 0){
+					button[i][j] = new JButtonCelula();
+
+					this.add(button[i][j]);
+				}
+
+				else{
 				
 				String valorString = Integer.toString(valor);
 				
-				button[i][j] = new JButton(valorString); // mudar para classe JButtonCelula
+				button[i][j] = new JButtonCelula(valorString); // mudar para classe JButtonCelula
 				
 				this.add(button[i][j]);
+				}
 			}
 		}
-		
 	}
 
 }

@@ -13,7 +13,7 @@ public class Tabuleiro {
 	private int linhas = 3;
 	private int colunas = 3;
 	
-	Celula[][] matriz; // private
+	private Celula[][] matriz; // private
 	
 	public Tabuleiro() {
 		
