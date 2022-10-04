@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collections;
+import Tabuleiro.*;
 
 public class Tabuleiro {
 	
@@ -31,6 +32,21 @@ public class Tabuleiro {
 				cont++;
 				
 				matriz[i][j] = new Celula(lista.get(cont));
+			}
+		}
+
+		// celula em branco como ultima celula
+		for(int i=0; i<this.linhas; i++){
+			for(int j=0; j<this.colunas; j++){
+
+				if(matriz[i][j].getValor() == 0){
+					Celula celulaTemp;
+
+					celulaTemp = matriz[this.linhas-1][this.colunas-1];
+					matriz[this.linhas-1][this.colunas-1] = matriz[i][j];
+					matriz[i][j] = celulaTemp; 
+					
+				}
 			}
 		}
 		

@@ -7,8 +7,10 @@ import Tabuleiro.*;
 
 public class JFrameTabuleiro extends JFrame {
 	
-	Tabuleiro tabuleiro;
-	
+	Tabuleiro tabuleiro = new Tabuleiro(); 
+
+	JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+
 	public JFrameTabuleiro() {
 		
 		configs();
@@ -16,10 +18,6 @@ public class JFrameTabuleiro extends JFrame {
 	}
 	
 	public void configs() {
-		
-		tabuleiro = new Tabuleiro();
-		
-		JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
 		
@@ -30,10 +28,6 @@ public class JFrameTabuleiro extends JFrame {
 		this.setLayout(grid);
 		this.setResizable(false);
 		
-		/*for(int i=0; i<tabuleiro.getLinhas()*tabuleiro.getColunas(); i++) {
-			JButton button = new JButton();
-			this.add(button);
-		}*/
 		Celula[][] matriz = tabuleiro.getMatriz();
 		
 		for(int i=0; i<tabuleiro.getLinhas(); i++) {
@@ -42,7 +36,7 @@ public class JFrameTabuleiro extends JFrame {
 				int valor = matriz[i][j].getValor();
 
 				if(valor == 0){
-					button[i][j] = new JButtonCelula();
+					button[i][j] = new JButtonCelula(this);
 
 					this.add(button[i][j]);
 				}
@@ -51,12 +45,20 @@ public class JFrameTabuleiro extends JFrame {
 				
 				String valorString = Integer.toString(valor);
 				
-				button[i][j] = new JButtonCelula(valorString); // mudar para classe JButtonCelula
+				button[i][j] = new JButtonCelula(valorString, this); 
 				
 				this.add(button[i][j]);
 				}
 			}
 		}
+	}
+
+	public JButtonCelula[][] getButtons(){
+		return this.button;
+	}
+
+	public Tabuleiro getTabuleiro(){
+		return tabuleiro;
 	}
 
 }
