@@ -1,9 +1,9 @@
 package excessoes;
 
-public class PuzzleNExceptions {
+public class PuzzleNExceptions extends Exception{
 
 	public PuzzleNExceptions() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }
