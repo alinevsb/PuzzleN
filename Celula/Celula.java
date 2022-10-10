@@ -42,6 +42,9 @@ public class Celula {
 		if(ordenado = true){
 		this.ordenado = ordenado;
 		} 
+		if(ordenado = false){
+			this.ordenado = ordenado;
+			} 
 		else{
 			throw new PuzzleNExceptions();
 		}
