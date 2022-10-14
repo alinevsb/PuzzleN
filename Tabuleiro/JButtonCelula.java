@@ -150,6 +150,13 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 								matriz[k][l].setOrdenado(true);							
 							}
 						}
+						else{
+							if(!buttons[i][j].getText().equals("")){
+								if(matriz[k][l].getValor() == Integer.parseInt(buttons[i][j].getText())){
+									matriz[k][l].setOrdenado(false);
+								}
+							}
+						}
 						
 						// teste no console
 						//System.out.println(matriz[k][l].getOrdenado()+", "+matriz[k][l].getValor());
