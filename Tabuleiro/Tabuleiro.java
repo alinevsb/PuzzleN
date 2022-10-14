@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collections;
 import Tabuleiro.*;
+import excessoes.PuzzleNExceptions;
 
 public class Tabuleiro {
 	
@@ -31,7 +32,7 @@ public class Tabuleiro {
 				
 				cont++;
 				
-				matriz[i][j] = new Celula(lista.get(cont));
+				matriz[i][j] = new Celula(lista.get(cont));	
 			}
 		}
 
@@ -72,6 +73,10 @@ public class Tabuleiro {
 			}
 			System.out.println();
 		}
+	}
+
+	public void gameOver(){
+		
 	}
 	
 	public int getLinhas() {
