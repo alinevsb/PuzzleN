@@ -9,13 +9,18 @@ public class Celula {
 	private boolean ordenado;
 	
 	//Coloquei um throws pra tentar resolver o problema que coloquei na linha 28, tenho que ver se deu certo
-	public Celula(int valor) throws PuzzleNExceptions {
+	public Celula(int valor) {
 		
 		//Random rand = new Random();
 		
 		//int valor = rand.nextInt(10);
 		this.setValor(valor);
-		this.ordenado = false;
+
+		if(valor == 0){
+			this.ordenado = true;
+		}else{
+			this.ordenado = false;
+		}
 		
 	}
 	
@@ -26,28 +31,24 @@ public class Celula {
 	}
 
 	//Quando eu coloco o throws PuzzleNExceptions, dá erro dentro do construtor, aparecendo um warning de "Unhandled exception type PuzzleNExceptions"
-	public void setValor (int valor) throws PuzzleNExceptions{
+	public void setValor (int valor) {
 		if(valor>0 && valor<10) {			
 			this.valor = valor;
-		} else {
+		} /*else {
 			throw new PuzzleNExceptions();
-		}  		
+		}  */	
 	}
-
-	/*if(setValor<0 && setValor>10){
-		throw new Exception()
-}*/
 	
-	public void setOrdenado (boolean ordenado) throws PuzzleNExceptions{
+	public void setOrdenado (boolean ordenado) {
 		if(ordenado = true){
 		this.ordenado = ordenado;
 		} 
 		if(ordenado = false){
 			this.ordenado = ordenado;
 			} 
-		else{
+		/*else{
 			throw new PuzzleNExceptions();
-		}
+		}*/
 	}
 
 	
