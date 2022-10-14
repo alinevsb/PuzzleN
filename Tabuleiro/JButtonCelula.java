@@ -149,6 +149,13 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 								matriz[k][l].setOrdenado(true);							
 							}
 						}
+						else{
+							if(!buttons[i][j].getText().equals("")){
+								if(matriz[k][l].getValor() == Integer.parseInt(buttons[i][j].getText())){
+									matriz[k][l].setOrdenado(false);
+								}
+							}
+						}
 						
 						// teste no console
 						System.out.println(matriz[k][l].getOrdenado()+", "+matriz[k][l].getValor());
@@ -165,7 +172,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 	public boolean isOrdenado(int linha, int coluna, JButtonCelula button){
 		if(!button.getText().equals("")){
 			if(Integer.parseInt((button.getText())) == (linha*3+coluna+1)){
-				System.out.println("ordenado");
+				//System.out.println("ordenado");
 
 				return true;
 			}

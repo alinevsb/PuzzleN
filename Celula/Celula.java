@@ -40,12 +40,9 @@ public class Celula {
 	}
 	
 	public void setOrdenado (boolean ordenado) {
-		if(ordenado = true){
+		if(ordenado == true || ordenado == false){
 		this.ordenado = ordenado;
 		} 
-		if(ordenado = false){
-			this.ordenado = ordenado;
-			} 
 		/*else{
 			throw new PuzzleNExceptions();
 		}*/
