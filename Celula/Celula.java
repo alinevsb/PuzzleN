@@ -15,13 +15,13 @@ public class Celula {
 		
 		//int valor = rand.nextInt(10);
 		this.setValor(valor);
-
-		if(valor == 0){
+		//this.ordenado = false;
+		if(valor==0){
 			this.ordenado = true;
-		}else{
+		}
+		else{
 			this.ordenado = false;
 		}
-		
 	}
 	
 	public int getValor () {

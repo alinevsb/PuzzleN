@@ -18,7 +18,6 @@ public class Tabuleiro {
 	private Celula[][] matriz; // private
 	
 	public Tabuleiro() {
-		
 		matriz = new Celula[this.linhas][this.colunas];
 		
 		ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -76,7 +75,18 @@ public class Tabuleiro {
 	}
 
 	public void gameOver(){
-		
+		Celula [][] matriz = this.getMatriz();
+		int contagem = 0;
+		for(int i = 0; i<this.linhas;i++){
+			for(int j = 0; j<this.linhas;j++){
+				if(matriz[i][j].getOrdenado()==true){
+					contagem++;
+				}
+			}
+		}
+		if(contagem>=9){
+			System.out.println("Fim do jogo!");
+		}
 	}
 	
 	public int getLinhas() {
