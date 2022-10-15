@@ -10,6 +10,7 @@ import org.w3c.dom.events.MouseEvent;
 import Celula.Celula;
 import excessoes.PuzzleNExceptions;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,12 +38,9 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 
 	public void configs(){
 		this.setOpaque(true);
-		/* caracteristicas do botao
-		*
-		*
-		*
-		*
-		*/
+
+		// caracteristicas do botao
+		this.setBorderPainted(true);
 
 		addMouseListener(this);
 
@@ -133,12 +131,15 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		|| ((linha == 2 && coluna == 0) && ((linhaVazia == 1 && colunaVazia == 0) || (linhaVazia == 2 && colunaVazia == 1))) || ((linha == 2 && coluna == 1) && ((linhaVazia == 1 && colunaVazia == 1) || (linhaVazia == 2 && colunaVazia == 0) || (linhaVazia == 2 && colunaVazia == 2)))
 		|| ((linha == 2 && coluna == 2) && ((linhaVazia == 1 && colunaVazia == 2) || (linhaVazia == 2 && colunaVazia ==1)))){
 		
-		textTemp = buttons[linha][coluna].getText();
-		buttons[linha][coluna].setText(buttons[linhaVazia][colunaVazia].getText());
-		buttons[linhaVazia][colunaVazia].setText(textTemp);
-		tabuleiroGrafico.getTabuleiro().gameOver();
+			textTemp = buttons[linha][coluna].getText();
+			buttons[linha][coluna].setText(buttons[linhaVazia][colunaVazia].getText());
+			buttons[linhaVazia][colunaVazia].setText(textTemp);
+		
+			if(tabuleiroGrafico.getTabuleiro().gameOver()){
+				tabuleiroGrafico.fimDoJogo();
+			}
 		}
-
+		
 		Celula[][] matriz = tabuleiroGrafico.getTabuleiro().getMatriz();
 
 		for(int i=0; i<3; i++){
@@ -147,13 +148,17 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 					for(int l=0; l<3; l++){
 						if(isOrdenado(i, j, buttons[i][j])){
 							if(matriz[k][l].getValor() == Integer.parseInt(buttons[i][j].getText())){
-								matriz[k][l].setOrdenado(true);							
+								matriz[k][l].setOrdenado(true);
+
+								// mudar cor
 							}
 						}
 						else{
 							if(!buttons[i][j].getText().equals("")){
 								if(matriz[k][l].getValor() == Integer.parseInt(buttons[i][j].getText())){
 									matriz[k][l].setOrdenado(false);
+
+									// voltar para cor normal
 								}
 							}
 						}
@@ -174,11 +179,12 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		if(!button.getText().equals("")){
 			if(Integer.parseInt((button.getText())) == (linha*3+coluna+1)){
 				//System.out.println("ordenado");
-
+				button.setBackground(Color.red);
 				return true;
 			}
 		}
 
+		button.setBackground(null);
 		return false;
 	}
 

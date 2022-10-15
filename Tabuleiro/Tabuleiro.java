@@ -74,21 +74,6 @@ public class Tabuleiro {
 		}
 	}
 
-	public void gameOver(){
-		Celula [][] matriz = this.getMatriz();
-		int contagem = 0;
-		for(int i = 0; i<this.linhas;i++){
-			for(int j = 0; j<this.linhas;j++){
-				if(matriz[i][j].getOrdenado()==true){
-					contagem++;
-				}
-			}
-		}
-		if(contagem>=9){
-			System.out.println("Fim do jogo!");
-		}
-	}
-	
 	public int getLinhas() {
 		return this.linhas;
 	}
@@ -100,4 +85,46 @@ public class Tabuleiro {
 	public Celula[][] getMatriz() {
 		return this.matriz;
 	}
+
+	public boolean gameOver(){
+		//Celula [][] matriz = this.getMatriz();
+		int contagem = 0;
+		for(int i = 0; i<this.linhas;i++){
+			for(int j = 0; j<this.linhas;j++){
+				if(matriz[i][j].getOrdenado()==true){
+					contagem++;
+				}
+			}
+		}
+		if(contagem>=8){
+			//System.out.println("Fim do jogo!");
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public boolean podeResolver(){
+		int inversoes = 0;
+		ArrayList<Integer> valores = new ArrayList<>();
+
+		for(int k=0; k<3; k++){
+			for(int l=0; l<3; l++){
+				valores.add(matriz[k][l].getValor());
+			}
+		}
+
+		for(int i=0; i<this.linhas; i++){
+			for(int j=0; j<i; j++){
+				if(valores.get(j)>valores.get(i)){
+					inversoes++;
+				}
+			}
+		}
+		//System.out.println(valores);
+		//System.out.println(inversoes);
+		return inversoes%2 == 0;
+	}
+	
 }

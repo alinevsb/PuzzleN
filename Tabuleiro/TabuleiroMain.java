@@ -9,4 +9,8 @@ public class TabuleiroMain {
 		new JFrameTabuleiro();
 	}
 
+	public static void reset(){
+		JFrameTabuleiro tabuleiro = new JFrameTabuleiro();
+	}
+
 }
