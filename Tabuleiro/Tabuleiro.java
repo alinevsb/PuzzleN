@@ -12,25 +12,37 @@ import excessoes.PuzzleNExceptions;
 
 public class Tabuleiro {
 	
-	private int linhas = 3;
-	private int colunas = 3;
+	private int linhas;
+	private int colunas;
+	private boolean nivel;
 	
 	private Celula[][] matriz; // private
 	
-	public Tabuleiro() {
+	public Tabuleiro(boolean nivel) {
+
+		if(nivel == true){
+			this.linhas = 4;
+			this.colunas = 4;
+		}
+
+		else{
+			this.linhas = 3;
+			this.colunas = 3;
+		}
+
 		matriz = new Celula[this.linhas][this.colunas];
 		
 		ArrayList<Integer> lista = new ArrayList<Integer>();
-        for (int i=0; i<9; i++) lista.add(i); // talvez colocar i=1, nao incluir o zero (celula em branco) no shuffle
+        for (int i=0; i<this.linhas*this.colunas; i++) lista.add(i); // talvez colocar i=1, nao incluir o zero (celula em branco) no shuffle
         Collections.shuffle(lista);
-        
+
         int cont = -1;
         
 		for(int i=0; i<this.linhas; i++) {
 			for(int j=0; j<this.colunas; j++) {
 				
 				cont++;
-				
+
 				matriz[i][j] = new Celula(lista.get(cont));	
 			}
 		}
@@ -96,7 +108,7 @@ public class Tabuleiro {
 				}
 			}
 		}
-		if(contagem>=8){
+		if(contagem>=this.linhas*this.colunas-1){
 			//System.out.println("Fim do jogo!");
 			return true;
 		}
@@ -109,8 +121,8 @@ public class Tabuleiro {
 		int inversoes = 0;
 		ArrayList<Integer> valores = new ArrayList<>();
 
-		for(int k=0; k<3; k++){
-			for(int l=0; l<3; l++){
+		for(int k=0; k<this.linhas; k++){
+			for(int l=0; l<this.colunas; l++){
 				valores.add(matriz[k][l].getValor());
 			}
 		}

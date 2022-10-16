@@ -141,10 +141,10 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		}
 		Celula[][] matriz = tabuleiroGrafico.getTabuleiro().getMatriz();
 
-		for(int i=0; i<3; i++){
-			for(int j=0; j<3; j++){
-				for(int k=0; k<3; k++){
-					for(int l=0; l<3; l++){
+		for(int i=0; i<tabuleiroGrafico.getTabuleiro().getLinhas(); i++){
+			for(int j=0; j<tabuleiroGrafico.getTabuleiro().getColunas(); j++){
+				for(int k=0; k<tabuleiroGrafico.getTabuleiro().getLinhas(); k++){
+					for(int l=0; l<tabuleiroGrafico.getTabuleiro().getColunas(); l++){
 						if(isOrdenado(i, j, buttons[i][j])){
 							if(matriz[k][l].getValor() == Integer.parseInt(buttons[i][j].getText())){
 								matriz[k][l].setOrdenado(true);

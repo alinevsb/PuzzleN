@@ -2,8 +2,9 @@ package Celula;
 import java.util.Random;
 
 import excessoes.PuzzleNExceptions;
+import interfaces.celulaInterface;
 
-public class Celula {
+public class Celula implements celulaInterface {
 	
 	private int valor;
 	private boolean ordenado;
@@ -24,15 +25,9 @@ public class Celula {
 		}
 	}
 	
-	public int getValor () {
-		
-		return this.valor;
-		
-	}
-
 	//Quando eu coloco o throws PuzzleNExceptions, dá erro dentro do construtor, aparecendo um warning de "Unhandled exception type PuzzleNExceptions"
 	public void setValor (int valor) {
-		if(valor>0 && valor<10) {			
+		if(valor>0 && valor<16) {			
 			this.valor = valor;
 		} /*else {
 			throw new PuzzleNExceptions();
@@ -48,6 +43,11 @@ public class Celula {
 		}*/
 	}
 
+	public int getValor () {
+			
+		return this.valor;
+			
+	}
 	
 	public boolean getOrdenado () {
 		return this.ordenado;

@@ -11,10 +11,11 @@ import configuracoes.JFrameMenu;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class JFrameTabuleiro extends JFrame {
-	
-	private Tabuleiro tabuleiro = new Tabuleiro(); 
 
+	private boolean puzzleNMaluco;
+	private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco);
 	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+	//private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco); 
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -36,27 +37,33 @@ public class JFrameTabuleiro extends JFrame {
 		this.setSize(600, 600);
 		this.setResizable(false);
 
-		JButton buttonConfig = new JButton("Configurações");
+		//JButton buttonConfig = new JButton("Configurações");
+		JCheckBox checkBox = new JCheckBox("PuzzleN maluco?");
 		JButton buttonJogar = new JButton("JOGAR!");
 
 		//buttonJogar.setSize(200,200);
 
 		this.add(panel);
 		panel.add(buttonJogar);
-		panel.add(buttonConfig);
+		panel.add(checkBox);
+
+		puzzleNMaluco = checkBox.isSelected();
+
+		//System.out.println(checkBox.isSelected());
+
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			configs(buttonJogar, buttonConfig, panel);
+			configs(buttonJogar, checkBox, panel);
             }
         });
 	}
 	
-	public void configs(JButton buttonJogar, JButton buttonConfig, JPanel panel) {
+	public void configs(JButton buttonJogar, JCheckBox checkBox, JPanel panel) {
 
 		this.remove(panel);
 		this.remove(buttonJogar);
-		this.remove(buttonConfig);
+		this.remove(checkBox);
 		this.dispose();
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
@@ -86,11 +93,11 @@ public class JFrameTabuleiro extends JFrame {
 
 					else{
 					
-					String valorString = Integer.toString(valor);
-					
-					button[i][j] = new JButtonCelula(valorString, this); 
-					
-					this.add(button[i][j]);
+						String valorString = Integer.toString(valor);
+						
+						button[i][j] = new JButtonCelula(valorString, this); 
+						
+						this.add(button[i][j]);
 					}
 				}
 			}
