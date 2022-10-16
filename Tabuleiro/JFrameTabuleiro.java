@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
+
 import Celula.Celula;
 import Tabuleiro.*;
 import configuracoes.JFrameMenu;
@@ -29,13 +31,15 @@ public class JFrameTabuleiro extends JFrame {
 	public void configsMenu(){
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1));
+		panel.setLayout(new GridLayout(2, 1, 0, -50));
 
 		this.setTitle("PuzzleN");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
 		this.setResizable(false);
+		this.setLocation(600, 300);
+		this.add(panel);
 
 		//JButton buttonConfig = new JButton("Configurações");
 		JCheckBox checkBox = new JCheckBox("PuzzleN maluco?");
@@ -43,7 +47,7 @@ public class JFrameTabuleiro extends JFrame {
 
 		//buttonJogar.setSize(200,200);
 
-		this.add(panel);
+		
 		panel.add(buttonJogar);
 		panel.add(checkBox);
 
@@ -66,14 +70,24 @@ public class JFrameTabuleiro extends JFrame {
 		this.remove(checkBox);
 		this.dispose();
 		
-		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
+		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha) 
+		JButton buttonAjuda = new JButton("Ajuda");
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
 		
 		this.setTitle("PuzzleN");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
-		this.setLayout(grid);
+		this.setLayout(new GridLayout(2, 1));
 		this.setResizable(false);
+		this.setLocation(600, 300);
+		this.add(panel3);
+		this.add(panel2);
+
+		panel2.setLayout(grid);
+		panel3.setSize(100, 100);
+		panel3.add(buttonAjuda);
 		
 		Celula[][] matriz = tabuleiro.getMatriz();
 
@@ -88,7 +102,7 @@ public class JFrameTabuleiro extends JFrame {
 					if(valor == 0){
 						button[i][j] = new JButtonCelula(this);
 
-						this.add(button[i][j]);
+						panel2.add(button[i][j]);
 					}
 
 					else{
@@ -97,7 +111,7 @@ public class JFrameTabuleiro extends JFrame {
 						
 						button[i][j] = new JButtonCelula(valorString, this); 
 						
-						this.add(button[i][j]);
+						panel2.add(button[i][j]);
 					}
 				}
 			}
