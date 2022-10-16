@@ -88,6 +88,15 @@ public class JFrameTabuleiro extends JFrame {
 		panel2.setLayout(grid);
 		panel3.setSize(100, 100);
 		panel3.add(buttonAjuda);
+
+		buttonAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+				showMessageDialog(null, "1   2   3   4   5   6   7   8");
+
+				// ajuda do botao
+            }
+        });
 		
 		Celula[][] matriz = tabuleiro.getMatriz();
 
