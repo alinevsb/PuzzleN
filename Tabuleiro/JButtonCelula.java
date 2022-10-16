@@ -40,7 +40,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		// caracteristicas do botao
 		this.setOpaque(true);
 		this.setBorderPainted(true);
-		this.setBackground(Color.cyan);
+		this.setBackground(Color.pink);
 
 		addMouseListener(this);
 
@@ -178,12 +178,12 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		if(!button.getText().equals("")){
 			if(Integer.parseInt((button.getText())) == (linha*3+coluna+1)){
 				//System.out.println("ordenado");
-				button.setBackground(Color.red);
+				button.setBackground(Color.green);
 				return true;
 			}
 		}
 
-		button.setBackground(Color.cyan);
+		button.setBackground(Color.pink);
 
 		if(button.getText().equals("")){
 			button.setBackground(null);
