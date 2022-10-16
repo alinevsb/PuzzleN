@@ -44,9 +44,7 @@ public class Celula implements celulaInterface {
 	}
 
 	public int getValor () {
-			
-		return this.valor;
-			
+		return this.valor;		
 	}
 	
 	public boolean getOrdenado () {

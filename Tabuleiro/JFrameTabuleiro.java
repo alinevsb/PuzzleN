@@ -3,6 +3,7 @@ package Tabuleiro;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
@@ -17,7 +18,6 @@ public class JFrameTabuleiro extends JFrame {
 	private boolean puzzleNMaluco;
 	private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco);
 	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
-	//private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco); 
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -31,25 +31,25 @@ public class JFrameTabuleiro extends JFrame {
 	public void configsMenu(){
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1, 0, -50));
+		panel.setLayout(new GridLayout(2, 1));
 
+		this.add(panel);
 		this.setTitle("PuzzleN");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 600);
+		this.setSize(700, 650);
 		this.setResizable(false);
 		this.setLocation(600, 300);
-		this.add(panel);
+		//this.setBackground(Color.blue);
 
 		//JButton buttonConfig = new JButton("Configurações");
-		JCheckBox checkBox = new JCheckBox("PuzzleN maluco?");
+		JButton checkBox = new JButton("PuzzleN maluco?");
 		JButton buttonJogar = new JButton("JOGAR!");
 
-		//buttonJogar.setSize(200,200);
-
-		
+		//buttonJogar.setBounds(200, 200, 200, 200);
 		panel.add(buttonJogar);
 		panel.add(checkBox);
+		panel.setVisible(true);
 
 		puzzleNMaluco = checkBox.isSelected();
 
@@ -63,7 +63,7 @@ public class JFrameTabuleiro extends JFrame {
         });
 	}
 	
-	public void configs(JButton buttonJogar, JCheckBox checkBox, JPanel panel) {
+	public void configs(JButton buttonJogar, JButton checkBox, JPanel panel) {
 
 		this.remove(panel);
 		this.remove(buttonJogar);
@@ -86,8 +86,10 @@ public class JFrameTabuleiro extends JFrame {
 		this.add(panel2);
 
 		panel2.setLayout(grid);
-		panel3.setSize(100, 100);
+		//panel3.setSize(100, 100);
 		panel3.add(buttonAjuda);
+		panel2.setBounds(0, 0, 250, 250);
+		panel3.setBounds(0, 0, 250, 250);
 
 		buttonAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
