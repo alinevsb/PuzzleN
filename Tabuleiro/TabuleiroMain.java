@@ -1,12 +1,15 @@
 package Tabuleiro;
 
+import configuracoes.*;
+
 import javax.swing.*;
 
 public class TabuleiroMain {
 
 	public static void main(String[] args) {
 		
-		new JFrameTabuleiro();
+		new Jogo();
+
 	}
 
 	public static void reset(){

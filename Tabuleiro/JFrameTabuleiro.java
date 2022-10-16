@@ -6,26 +6,58 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 import java.awt.GridLayout;
 import Celula.Celula;
 import Tabuleiro.*;
+import configuracoes.JFrameMenu;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class JFrameTabuleiro extends JFrame {
 	
-	Tabuleiro tabuleiro = new Tabuleiro(); 
+	private Tabuleiro tabuleiro = new Tabuleiro(); 
 
-	JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 
 	public JFrameTabuleiro() {
-		
-		configs();
-		
+		configsMenu();
 	}
 
 	public void reset(){
 		TabuleiroMain.reset();
 		this.dispose();
 	}
+
+	public void configsMenu(){
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2, 1));
+
+		this.setTitle("PuzzleN");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600, 600);
+		this.setResizable(false);
+
+		JButton buttonConfig = new JButton("Configurações");
+		JButton buttonJogar = new JButton("JOGAR!");
+
+		//buttonJogar.setSize(200,200);
+
+		this.add(panel);
+		panel.add(buttonJogar);
+		panel.add(buttonConfig);
+		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+			configs(buttonJogar, buttonConfig, panel);
+            }
+        });
+	}
 	
-	public void configs() {
+	public void configs(JButton buttonJogar, JButton buttonConfig, JPanel panel) {
+
+		this.remove(panel);
+		this.remove(buttonJogar);
+		this.remove(buttonConfig);
+		this.dispose();
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha)
 		

@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 
 public class JButtonCelula extends JButton implements MouseInputListener, ActionListener{
 
-	JFrameTabuleiro tabuleiroGrafico;
+	private JFrameTabuleiro tabuleiroGrafico;
 
 	public JButtonCelula(String valor, JFrameTabuleiro tg) {
 
@@ -37,10 +37,10 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 	}
 
 	public void configs(){
-		this.setOpaque(true);
-
 		// caracteristicas do botao
+		this.setOpaque(true);
 		this.setBorderPainted(true);
+		this.setBackground(Color.cyan);
 
 		addMouseListener(this);
 
@@ -139,7 +139,6 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 				tabuleiroGrafico.fimDoJogo();
 			}
 		}
-		
 		Celula[][] matriz = tabuleiroGrafico.getTabuleiro().getMatriz();
 
 		for(int i=0; i<3; i++){
@@ -184,7 +183,12 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 			}
 		}
 
-		button.setBackground(null);
+		button.setBackground(Color.cyan);
+
+		if(button.getText().equals("")){
+			button.setBackground(null);
+		}
+
 		return false;
 	}
 

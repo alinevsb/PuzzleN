@@ -1,23 +1,24 @@
 package configuracoes;
 
+import Tabuleiro.*;
+import javax.swing.*;
+
 public class Jogo {
 
 	public Jogo() {
 		iniciarJogo();
-		escolherNivel();
-		escolherMenu();
 	}
 
-	private void escolherMenu() {
-		//Preencher com a estrutura do menu, que se interliga com o nível e o início do jogo
+	public void escolherMenu() {
+		new JFrameMenu();
 	}
 
-	private void escolherNivel() {
+	public void escolherNivel() {
 		//Preencher esse método com as dificuldades do jogo
 	}
 
-	private void iniciarJogo() {
-		//Fará a validação de início e fim do jogo
+	public void iniciarJogo() {
+		new JFrameTabuleiro();
 	}
 
 }
