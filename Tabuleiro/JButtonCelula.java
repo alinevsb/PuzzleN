@@ -11,6 +11,7 @@ import org.w3c.dom.events.MouseEvent;
 import Celula.Celula;
 import excessoes.PuzzleNExceptions;
 
+import java.awt.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +41,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 	public void configs(){
 		// caracteristicas do botao
 		this.setOpaque(true);
+
 		/* caracteristicas do botao
 		*
 		*
@@ -47,6 +49,9 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		*
 		*/
 
+		this.setBorderPainted(true);
+		this.setBackground(Color.pink);
+		this.setFont(new Font("serif", Font.BOLD, 50)); // fonte
 		addMouseListener(this);
 
 		addActionListener(this);
