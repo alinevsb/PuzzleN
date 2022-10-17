@@ -83,7 +83,7 @@ public class JFrameTabuleiro extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
-		this.setLayout(new GridLayout(2, 1));
+		//this.setLayout(new GridLayout(2, 1));
 		this.setResizable(false);
 		this.setLocation(450, 100);
 		this.add(panel3);
