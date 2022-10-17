@@ -4,6 +4,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -39,8 +40,12 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 	public void configs(){
 		// caracteristicas do botao
 		this.setOpaque(true);
-		this.setBorderPainted(true);
-		this.setBackground(Color.pink);
+		/* caracteristicas do botao
+		*
+		*
+		*
+		*
+		*/
 
 		addMouseListener(this);
 
@@ -183,7 +188,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 			}
 		}
 
-		button.setBackground(Color.pink);
+		button.setBackground(Color.PINK);
 
 		if(button.getText().equals("")){
 			button.setBackground(null);
