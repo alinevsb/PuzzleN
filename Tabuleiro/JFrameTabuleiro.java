@@ -17,12 +17,10 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class JFrameTabuleiro extends JFrame {
 
-	//private boolean dificuldades;
-	//private Tabuleiro tabuleiro2 = new Tabuleiro(dificuldades);
 	private int dif;
-	private int puzzleNMaluco = 0;
-	private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco);
-	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+	private int puzzleNMaluco;
+	private Tabuleiro tabuleiro;
+	private JButtonCelula button[][];
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -87,6 +85,9 @@ public class JFrameTabuleiro extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
 			configs(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos,buttonRanking, panel);
+
+			setDificuldade(0);
+			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
             }
         });
 
@@ -97,8 +98,6 @@ public class JFrameTabuleiro extends JFrame {
             }
         });
 	}
-
-
 
 	public void configsDif(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel){
 
@@ -138,31 +137,29 @@ public class JFrameTabuleiro extends JFrame {
 
 		buttonFacil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-				dif = 2;
-				//configs(buttonFacil, buttonMedio, buttonDificil, panel, dif);
+				setDificuldade(2);
+				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
 
 		buttonMedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-
+				setDificuldade(0);
+				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
 
 		buttonDificil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-
+				setDificuldade(1);
+				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
 	}
 
-
-
-
-
-
-
-
+	public void teste9(){
+		System.out.println("teste");
+	}
 
 	/*public void atribuirBotaoTabuleiro(int dificuldade){
 		tabuleiro = new Tabuleiro(dificuldade);
@@ -178,6 +175,16 @@ public class JFrameTabuleiro extends JFrame {
 		this.remove(buttonDificuldades);
 		this.remove(buttonSalvos);
 		this.remove(buttonRanking);
+	}
+	public void configs(JButton button1, JButton button2,JButton button3, JPanel panel) {
+
+		tabuleiro = new Tabuleiro(this);
+		button = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+
+		this.remove(panel);
+		this.remove(button1);
+		this.remove(button2);
+		this.remove(button3);
 		this.dispose();
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha) 
@@ -252,6 +259,14 @@ public class JFrameTabuleiro extends JFrame {
 
 	public int getPuzzleNMaluco(){
 		return puzzleNMaluco;
+	}
+
+	public int getDificuldade(){
+		return dif;
+	}
+
+	public void setDificuldade(int dif){
+		this.dif = dif;
 	}
 
 	public void fimDoJogo(){
