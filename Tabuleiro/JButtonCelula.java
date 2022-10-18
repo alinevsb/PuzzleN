@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.AttributeSet.ColorAttribute;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -15,15 +16,18 @@ import java.awt.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class JButtonCelula extends JButton implements MouseInputListener, ActionListener{
 
 	private JFrameTabuleiro tabuleiroGrafico;
+	private boolean maluco;
 
 	public JButtonCelula(String valor, JFrameTabuleiro tg) {
 
 		this.tabuleiroGrafico = tg;
 		this.setText(valor);
+		this.maluco = tg.getPuzzleNMaluco();
 
 		configs();
 
@@ -33,7 +37,8 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 
 		this.tabuleiroGrafico = tg;
 		this.setText("");
-		
+		this.maluco = tg.getPuzzleNMaluco();
+
 		configs();
 		
 	}
@@ -104,6 +109,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 
 		Celula celulaTemp;
 		String textTemp;
+		String textTemp2;
 		int linha = 0;
 		int coluna = 0;
 		int linhaVazia = 0;
@@ -161,6 +167,26 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		
 			if(tabuleiroGrafico.getTabuleiro().gameOver()){
 				tabuleiroGrafico.fimDoJogo();
+			}
+
+			if(maluco){
+				Random rand = new Random();
+
+				int probabilidade = rand.nextInt(10);
+        		int linha1 = rand.nextInt(tabuleiroGrafico.getTabuleiro().getLinhas());
+        		int coluna1 = rand.nextInt(tabuleiroGrafico.getTabuleiro().getColunas());
+        		int linha2 = rand.nextInt(tabuleiroGrafico.getTabuleiro().getLinhas());
+        		int coluna2 = rand.nextInt(tabuleiroGrafico.getTabuleiro().getColunas());
+
+				System.out.println(probabilidade);
+
+				if(probabilidade>8){
+					textTemp2 = buttons[linha1][coluna1].getText();
+					buttons[linha1][coluna1].setText(buttons[linha2][coluna2].getText());
+					buttons[linha2][coluna2].setText(textTemp2);
+
+					showMessageDialog(null, "PUZZLEN MALUCO");
+				}
 			}
 		}
 		Celula[][] matriz = tabuleiroGrafico.getTabuleiro().getMatriz();
