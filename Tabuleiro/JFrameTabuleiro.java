@@ -2,6 +2,8 @@ package Tabuleiro;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
+import javax.swing.text.AttributeSet.ColorAttribute;
+import javax.swing.text.AttributeSet.FontAttribute;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -34,26 +36,47 @@ public class JFrameTabuleiro extends JFrame {
 	public void configsMenu(){
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1));
+		panel.setLayout(new GridLayout(0,1,80,80));
+		panel.setLayout(null);
 
 		this.add(panel);
 		this.setTitle("PuzzleN");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 600);
+		this.setSize(400, 500);
 		this.setResizable(false);
 		this.setLocation(450, 100);
+		panel.setBackground(Color.LIGHT_GRAY);
+
 		//this.setBackground(Color.blue);
 
 		//JButton buttonConfig = new JButton("Configurações");
-		JButton buttonDificuldades = new JButton("DIFICULDADES");
-		JButton buttonMaluco = new JButton("MODO PUZZLEN MALUCO");
 		JButton buttonJogar = new JButton("JOGAR!");
+		buttonJogar.setBounds(65,100,250,45);
+		buttonJogar.setBackground(Color.WHITE); 
+
+		JButton buttonDificuldades = new JButton("DIFICULDADES");
+		buttonDificuldades.setBounds(65,150,250,45);
+		buttonDificuldades.setBackground(Color.WHITE); 
+
+		JButton buttonMaluco = new JButton("MODO PUZZLEN MALUCO");
+		buttonMaluco.setBounds(65,200,250,45);
+		buttonMaluco.setBackground(Color.WHITE); 
+
+		JButton buttonRanking = new JButton("RANKING");
+		buttonRanking.setBounds(65,250,250,45);
+		buttonRanking.setBackground(Color.WHITE); 
+
+		JButton buttonSalvos = new JButton("JOGO SALVO");
+		buttonSalvos.setBounds(65,300,250,45);
+		buttonSalvos.setBackground(Color.WHITE); 
 
 		//buttonJogar.setBounds(200, 200, 200, 200);
 		panel.add(buttonJogar);
 		panel.add(buttonMaluco);
 		panel.add(buttonDificuldades);
+		panel.add(buttonRanking);
+		panel.add(buttonSalvos);
 		panel.setVisible(true);
 
 		//puzzleNMaluco = checkBox.isSelected();
@@ -63,7 +86,7 @@ public class JFrameTabuleiro extends JFrame {
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+			configs(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos,buttonRanking, panel);
             }
         });
 
@@ -86,19 +109,27 @@ public class JFrameTabuleiro extends JFrame {
 		this.dispose();
 
 		JPanel panelDif = new JPanel();
-		panelDif.setLayout(new GridLayout(2, 1));
-
+		panelDif.setLayout(null);
+		panelDif.setBackground(Color.LIGHT_GRAY);
 		this.add(panelDif);
 		this.setTitle("DIFICULDADES");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 600);
+		this.setSize(400, 500);
 		this.setResizable(false);
 		this.setLocation(450, 100);
 
-		JButton buttonFacil = new JButton("FACIL");
+		JButton buttonFacil = new JButton("FÁCIL");
+		buttonFacil.setBounds(67,100,250,70);
+		buttonFacil.setBackground(Color.WHITE);
+
 		JButton buttonMedio = new JButton("MEDIO");
+		buttonMedio.setBounds(67,180,250,70);
+		buttonMedio.setBackground(Color.WHITE); 
+
 		JButton buttonDificil = new JButton("DIFICIL");
+		buttonDificil.setBounds(67,260,250,70);
+		buttonDificil.setBackground(Color.WHITE); 
 
 		panelDif.add(buttonFacil);
 		panelDif.add(buttonMedio);
@@ -139,12 +170,14 @@ public class JFrameTabuleiro extends JFrame {
 	}*/
 
 
-	public void configs(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel) {
+	public void configs(JButton buttonJogar,JButton buttonDificuldades,JButton buttonMaluco,JButton buttonSalvos,JButton buttonRanking,JPanel panel) {
 
 		this.remove(panel);
 		this.remove(buttonJogar);
 		this.remove(buttonMaluco);
 		this.remove(buttonDificuldades);
+		this.remove(buttonSalvos);
+		this.remove(buttonRanking);
 		this.dispose();
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha) 

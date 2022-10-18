@@ -48,9 +48,8 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		*
 		*
 		*/
-
 		this.setBorderPainted(true);
-		this.setBackground(Color.pink);
+		this.setBackground(Color.white);
 		this.setFont(new Font("serif", Font.BOLD, 50)); // fonte
 		addMouseListener(this);
 
@@ -210,7 +209,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 			}
 		}
 
-		button.setBackground(Color.PINK);
+		button.setBackground(Color.white);
 
 		if(button.getText().equals("")){
 			button.setBackground(null);
