@@ -10,7 +10,7 @@ public class Jogo {
 	}
 
 	public void escolherMenu() {
-		new JFrameMenu();
+		//new JFrameMenu();
 	}
 
 	public void escolherNivel() {

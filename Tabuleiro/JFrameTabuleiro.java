@@ -7,20 +7,22 @@ import javax.swing.text.AttributeSet.FontAttribute;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
+import java.io.IOException;
 
 import Celula.Celula;
-import Tabuleiro.*;
-import configuracoes.JFrameMenu;
+import ranking.Ranking;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class JFrameTabuleiro extends JFrame {
 
 	private int dif;
-	private int puzzleNMaluco;
+	private boolean puzzleNMaluco = true;
 	private Tabuleiro tabuleiro;
 	private JButtonCelula button[][];
+	private long tempoInicial;
+	private long tempoDecorrido;
+	private long tempoDecorridoSeg; 
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -33,6 +35,7 @@ public class JFrameTabuleiro extends JFrame {
 
 	public void configsMenu(){
 
+		//JTextField text = new JTextField("Digite seu nome: ", 20);
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,1,80,80));
 		panel.setLayout(null);
@@ -46,9 +49,7 @@ public class JFrameTabuleiro extends JFrame {
 		this.setLocation(450, 100);
 		panel.setBackground(Color.LIGHT_GRAY);
 
-		//this.setBackground(Color.blue);
 
-		//JButton buttonConfig = new JButton("Configurações");
 		JButton buttonJogar = new JButton("JOGAR!");
 		buttonJogar.setBounds(65,100,250,45);
 		buttonJogar.setBackground(Color.WHITE); 
@@ -69,17 +70,13 @@ public class JFrameTabuleiro extends JFrame {
 		buttonSalvos.setBounds(65,300,250,45);
 		buttonSalvos.setBackground(Color.WHITE); 
 
-		//buttonJogar.setBounds(200, 200, 200, 200);
 		panel.add(buttonJogar);
 		panel.add(buttonMaluco);
 		panel.add(buttonDificuldades);
 		panel.add(buttonRanking);
 		panel.add(buttonSalvos);
+		//panel.add(text);
 		panel.setVisible(true);
-
-		//puzzleNMaluco = checkBox.isSelected();
-
-		//System.out.println(checkBox.isSelected());
 
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +84,7 @@ public class JFrameTabuleiro extends JFrame {
 			configs(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos,buttonRanking, panel);
 
 			setDificuldade(0);
+			setPuzzleNMaluco(false);
 			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
             }
         });
@@ -95,6 +93,15 @@ public class JFrameTabuleiro extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
 			configsDif(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+            }
+        });
+
+		buttonMaluco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+			
+			setPuzzleNMaluco(true);
+			
+			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
             }
         });
 	}
@@ -138,6 +145,7 @@ public class JFrameTabuleiro extends JFrame {
 		buttonFacil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setDificuldade(2);
+				setPuzzleNMaluco(false);
 				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
@@ -145,6 +153,7 @@ public class JFrameTabuleiro extends JFrame {
 		buttonMedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setDificuldade(0);
+				setPuzzleNMaluco(false);
 				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
@@ -152,20 +161,11 @@ public class JFrameTabuleiro extends JFrame {
 		buttonDificil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setDificuldade(1);
+				setPuzzleNMaluco(false);
 				configs(buttonFacil, buttonMedio, buttonDificil, panelDif);
             }
         });
 	}
-
-	public void teste9(){
-		System.out.println("teste");
-	}
-
-	/*public void atribuirBotaoTabuleiro(int dificuldade){
-		tabuleiro = new Tabuleiro(dificuldade);
-		JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
-	}*/
-
 
 	public void configs(JButton buttonJogar,JButton buttonDificuldades,JButton buttonMaluco,JButton buttonSalvos,JButton buttonRanking,JPanel panel) {
 
@@ -180,6 +180,9 @@ public class JFrameTabuleiro extends JFrame {
 
 		tabuleiro = new Tabuleiro(this);
 		button = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+
+		// temporizador
+		tempoInicial = System.currentTimeMillis();
 
 		this.remove(panel);
 		this.remove(button1);
@@ -196,14 +199,12 @@ public class JFrameTabuleiro extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
-		//this.setLayout(new GridLayout(2, 1));
 		this.setResizable(false);
 		this.setLocation(450, 100);
 		this.add(panel3);
 		this.add(panel2);
 
 		panel2.setLayout(grid);
-		//panel3.setSize(100, 100);
 		panel3.add(buttonAjuda);
 		panel2.setBounds(0, 0, 250, 250);
 		panel3.setBounds(0, 0, 250, 250);
@@ -219,7 +220,6 @@ public class JFrameTabuleiro extends JFrame {
 		
 		Celula[][] matriz = tabuleiro.getMatriz();
 
-		// mudanças
 		if(tabuleiro.podeResolver()){
 				
 			for(int i=0; i<tabuleiro.getLinhas(); i++) {
@@ -257,8 +257,12 @@ public class JFrameTabuleiro extends JFrame {
 		return tabuleiro;
 	}
 
-	public int getPuzzleNMaluco(){
+	public boolean getPuzzleNMaluco(){
 		return puzzleNMaluco;
+	}
+
+	public void setPuzzleNMaluco(boolean puzzleNMaluco){
+		this.puzzleNMaluco = puzzleNMaluco;
 	}
 
 	public int getDificuldade(){
@@ -271,6 +275,16 @@ public class JFrameTabuleiro extends JFrame {
 
 	public void fimDoJogo(){
 		showMessageDialog(null, "FIM DE JOGO!");
+		tempoDecorrido = System.currentTimeMillis() - tempoInicial;
+		tempoDecorridoSeg = tempoDecorrido / 1000;
+		try {
+			//System.out.println("funfou");
+			//System.out.println(tempoDecorridoSeg);
+			Ranking.salvarRanking(tempoDecorridoSeg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		reset();
 	}
 
