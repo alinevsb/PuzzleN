@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.io.IOException;
 
 import Celula.Celula;
+import ranking.Leitor;
 import ranking.Ranking;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -23,6 +24,7 @@ public class JFrameTabuleiro extends JFrame {
 	private long tempoInicial;
 	private long tempoDecorrido;
 	private long tempoDecorridoSeg; 
+	private String text;
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -31,6 +33,14 @@ public class JFrameTabuleiro extends JFrame {
 	public void reset(){
 		TabuleiroMain.reset();
 		this.dispose();
+	}
+
+	public String getText(){
+		Leitor leitor = new Leitor("C:/Users/danie/Documents/GitHub/PuzzleN/ranking/Ranking.txt");
+
+		this.text = leitor.lerArquivo();
+
+		return text;
 	}
 
 	public void configsMenu(){
@@ -81,7 +91,7 @@ public class JFrameTabuleiro extends JFrame {
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			configs(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos,buttonRanking, panel);
+			configs(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos, buttonRanking, panel);
 
 			setDificuldade(0);
 			setPuzzleNMaluco(false);
@@ -102,6 +112,13 @@ public class JFrameTabuleiro extends JFrame {
 			setPuzzleNMaluco(true);
 			
 			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+            }
+        });
+
+		buttonRanking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+			
+			configsRanking(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos, buttonRanking, panel);
             }
         });
 	}
@@ -167,6 +184,33 @@ public class JFrameTabuleiro extends JFrame {
         });
 	}
 
+	public void configsRanking(JButton buttonJogar,JButton buttonDificuldades,JButton buttonMaluco,JButton buttonSalvos,JButton buttonRanking,JPanel panel){
+		this.remove(panel);
+		this.remove(buttonJogar);
+		this.remove(buttonMaluco);
+		this.remove(buttonDificuldades);
+		this.remove(buttonSalvos);
+		this.remove(buttonRanking);
+		this.dispose();
+
+		JPanel painel = new JPanel();
+		panel.setLayout(new GridLayout(0,1,80,80));
+		panel.setLayout(null);
+
+		this.add(painel);
+		this.setTitle("PuzzleN");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(400, 500);
+		this.setResizable(false);
+		this.setLocation(450, 100);
+		painel.setBackground(Color.LIGHT_GRAY);
+
+		JLabel label = new JLabel(this.getText());
+
+		painel.add(label);
+	}
+
 	public void configs(JButton buttonJogar,JButton buttonDificuldades,JButton buttonMaluco,JButton buttonSalvos,JButton buttonRanking,JPanel panel) {
 
 		this.remove(panel);
@@ -175,6 +219,7 @@ public class JFrameTabuleiro extends JFrame {
 		this.remove(buttonDificuldades);
 		this.remove(buttonSalvos);
 		this.remove(buttonRanking);
+		this.dispose();
 	}
 	public void configs(JButton button1, JButton button2,JButton button3, JPanel panel) {
 
