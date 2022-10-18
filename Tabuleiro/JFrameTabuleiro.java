@@ -8,6 +8,7 @@ import javax.swing.text.AttributeSet.FontAttribute;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.io.File;
 
 import Celula.Celula;
 import Tabuleiro.*;
@@ -46,9 +47,6 @@ public class JFrameTabuleiro extends JFrame {
 		this.setLocation(450, 100);
 		panel.setBackground(Color.LIGHT_GRAY);
 
-		//this.setBackground(Color.blue);
-
-		//JButton buttonConfig = new JButton("Configurações");
 		JButton buttonJogar = new JButton("JOGAR!");
 		buttonJogar.setBounds(65,100,250,45);
 		buttonJogar.setBackground(Color.WHITE); 
@@ -69,7 +67,6 @@ public class JFrameTabuleiro extends JFrame {
 		buttonSalvos.setBounds(65,300,250,45);
 		buttonSalvos.setBackground(Color.WHITE); 
 
-		//buttonJogar.setBounds(200, 200, 200, 200);
 		panel.add(buttonJogar);
 		panel.add(buttonMaluco);
 		panel.add(buttonDificuldades);
@@ -78,7 +75,6 @@ public class JFrameTabuleiro extends JFrame {
 		panel.setVisible(true);
 
 		//puzzleNMaluco = checkBox.isSelected();
-
 		//System.out.println(checkBox.isSelected());
 
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,16 +90,18 @@ public class JFrameTabuleiro extends JFrame {
 		buttonDificuldades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			configsDif(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+			configsDif(buttonJogar, buttonMaluco, buttonDificuldades, buttonSalvos,buttonRanking,panel);
             }
         });
 	}
 
-	public void configsDif(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel){
+	public void configsDif(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JButton buttonSalvos,JButton buttonRanking,JPanel panel){
 
 		this.remove(buttonJogar);
 		this.remove(buttonMaluco);
 		this.remove(buttonDificuldades);
+		this.remove(buttonSalvos);
+		this.remove(buttonRanking);
 		this.remove(panel);
 		this.dispose();
 
@@ -122,7 +120,7 @@ public class JFrameTabuleiro extends JFrame {
 		buttonFacil.setBounds(67,100,250,70);
 		buttonFacil.setBackground(Color.WHITE);
 
-		JButton buttonMedio = new JButton("MEDIO");
+		JButton buttonMedio = new JButton("MÉDIO");
 		buttonMedio.setBounds(67,180,250,70);
 		buttonMedio.setBackground(Color.WHITE); 
 
@@ -161,12 +159,6 @@ public class JFrameTabuleiro extends JFrame {
 		System.out.println("teste");
 	}
 
-	/*public void atribuirBotaoTabuleiro(int dificuldade){
-		tabuleiro = new Tabuleiro(dificuldade);
-		JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
-	}*/
-
-
 	public void configs(JButton buttonJogar,JButton buttonDificuldades,JButton buttonMaluco,JButton buttonSalvos,JButton buttonRanking,JPanel panel) {
 
 		this.remove(panel);
@@ -186,16 +178,18 @@ public class JFrameTabuleiro extends JFrame {
 		this.remove(button2);
 		this.remove(button3);
 		this.dispose();
-		
-		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha) 
-		JButton buttonAjuda = new JButton("Ajuda");
+
+		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas(), 20,20); // linhas e colunas (malha) 
+
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
+
+		panel3.setLayout(null);
 		
 		this.setTitle("PuzzleN");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 600);
+		this.setSize(700, 700);
 		//this.setLayout(new GridLayout(2, 1));
 		this.setResizable(false);
 		this.setLocation(450, 100);
@@ -203,8 +197,14 @@ public class JFrameTabuleiro extends JFrame {
 		this.add(panel2);
 
 		panel2.setLayout(grid);
-		//panel3.setSize(100, 100);
+		panel3.setSize(100, 100);
+
+		JButton buttonAjuda = new JButton("Ajuda");
+		buttonAjuda.setBounds(0, 208, 100, 20);
+		buttonAjuda.setBackground(Color.MAGENTA);
+
 		panel3.add(buttonAjuda);
+		panel3.setBounds(0, 0, 250, 250);
 		panel2.setBounds(0, 0, 250, 250);
 		panel3.setBounds(0, 0, 250, 250);
 

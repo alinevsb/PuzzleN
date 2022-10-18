@@ -41,7 +41,6 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 	public void configs(){
 		// caracteristicas do botao
 		this.setOpaque(true);
-
 		/* caracteristicas do botao
 		*
 		*
@@ -114,7 +113,6 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		//int valor = Integer.parseInt(s);
 		
 		//System.out.println(s);
-
 		JButtonCelula[][] buttons = tabuleiroGrafico.getButtons();
 
 		for(int i=0; i<tabuleiroGrafico.getTabuleiro().getLinhas(); i++){
