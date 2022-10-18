@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.Collections;
 import Tabuleiro.*;
 import excessoes.PuzzleNExceptions;
@@ -15,22 +16,28 @@ public class Tabuleiro {
 	private int linhas;
 	private int colunas;
 	private int nivel;
-	
 	private Celula[][] matriz; // private
+	//private int dif;
 	
-	public Tabuleiro(int nivel) {
+	public Tabuleiro(JFrameTabuleiro tg) {
 
-		if(nivel == 1){
+		this.nivel = tg.getDificuldade();
+		//this.nivel = 1;
+
+		System.out.println("nivel = " +this.nivel);
+		//System.out.println("dif = " +dif);
+
+		if(this.nivel == 1){
 			this.linhas = 4;
 			this.colunas = 4;
 		}
 
-		else if(nivel == 0) {
+		else if(this.nivel == 0) {
 			this.linhas = 3;
 			this.colunas = 3;
 		} 
 
-		else if(nivel == 2){
+		else if(this.nivel == 2){
 			this.linhas = 2;
 			this.colunas = 2;
 		}
@@ -101,6 +108,14 @@ public class Tabuleiro {
 	
 	public Celula[][] getMatriz() {
 		return this.matriz;
+	}
+
+	public int getNivel(){
+		return this.nivel;
+	}
+
+	public void setNivel(int nivel){
+		this.nivel = nivel;
 	}
 
 	public boolean gameOver(){

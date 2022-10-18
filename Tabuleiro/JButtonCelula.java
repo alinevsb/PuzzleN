@@ -24,7 +24,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 
 		this.tabuleiroGrafico = tg;
 		this.setText(valor);
-		
+
 		configs();
 
 	}
@@ -33,7 +33,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 
 		this.tabuleiroGrafico = tg;
 		this.setText("");
-
+		
 		configs();
 		
 	}
@@ -139,7 +139,7 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		|| (linhaVazia == 2 && colunaVazia == 0) || (linhaVazia == 0 && colunaVazia == 0))) || ((linha == 1 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0)
 		|| (linhaVazia == 1 && colunaVazia == 2) || (linhaVazia == 2 && colunaVazia ==  1))) || ((linha == 1 && coluna == 2) && ((linhaVazia == 0 && colunaVazia == 2) || (linhaVazia == 1 && colunaVazia == 1) || (linhaVazia == 2 && colunaVazia == 2)))
 		|| ((linha == 2 && coluna == 0) && ((linhaVazia == 1 && colunaVazia == 0) || (linhaVazia == 2 && colunaVazia == 1))) || ((linha == 2 && coluna == 1) && ((linhaVazia == 1 && colunaVazia == 1) || (linhaVazia == 2 && colunaVazia == 0) || (linhaVazia == 2 && colunaVazia == 2)))
-		|| ((linha == 2 && coluna == 2) && ((linhaVazia == 1 && colunaVazia == 2) || (linhaVazia == 2 && colunaVazia == 1)))) && tabuleiroGrafico.getPuzzleNMaluco() == 0) || ((((linha == 0 && coluna == 0) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0))) 
+		|| ((linha == 2 && coluna == 2) && ((linhaVazia == 1 && colunaVazia == 2) || (linhaVazia == 2 && colunaVazia == 1)))) && tabuleiroGrafico.getDificuldade() == 0) || ((((linha == 0 && coluna == 0) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0))) 
 		|| ((linha == 0 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 0) || (linhaVazia == 1 && colunaVazia == 1) || (linhaVazia == 0 && colunaVazia == 2))) || ((linha == 0 && coluna == 2) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 2) || (linhaVazia == 0 && colunaVazia == 3)))
 		|| ((linha == 0 && coluna == 3) && ((linhaVazia == 0 && colunaVazia == 2) || (linhaVazia == 1 && colunaVazia == 3))) || ((linha == 1 && coluna == 0) && ((linhaVazia == 0 && colunaVazia ==0) || (linhaVazia == 1 && colunaVazia == 1) || (linhaVazia == 2 && colunaVazia == 0))) 
 		|| ((linha == 1 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0) || (linhaVazia == 2 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 2))) 
@@ -152,11 +152,11 @@ public class JButtonCelula extends JButton implements MouseInputListener, Action
 		|| ((linha == 3 && coluna == 0) && ((linhaVazia == 2 && colunaVazia == 0) || (linhaVazia == 3 && colunaVazia == 1))) 
 		|| ((linha == 3 && coluna == 1) && ((linhaVazia == 2 && colunaVazia == 1) || (linhaVazia == 3 && colunaVazia == 0) || (linhaVazia == 3 && colunaVazia == 2)))
 		|| ((linha == 3 && coluna == 2) && ((linhaVazia == 2 && colunaVazia == 2) || (linhaVazia == 3 && colunaVazia == 1) || (linhaVazia == 3 && colunaVazia == 3)))
-		|| ((linha == 3 && coluna == 3) && ((linhaVazia == 2 && colunaVazia == 3) || (linhaVazia == 3 && colunaVazia == 2)))) && tabuleiroGrafico.getPuzzleNMaluco() == 1) 
+		|| ((linha == 3 && coluna == 3) && ((linhaVazia == 2 && colunaVazia == 3) || (linhaVazia == 3 && colunaVazia == 2)))) && tabuleiroGrafico.getDificuldade() == 1) 
 		|| ((linha == 0 && coluna == 0) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0))
 		|| ((linha == 0 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 0) || (linhaVazia == 1 && colunaVazia == 1)))
 		|| ((linha == 1 && coluna == 0) && ((linhaVazia == 0 && colunaVazia == 0) || (linhaVazia == 1 && colunaVazia == 1)))
-		|| ((linha == 1 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0)))) && tabuleiroGrafico.getPuzzleNMaluco() == 2){
+		|| ((linha == 1 && coluna == 1) && ((linhaVazia == 0 && colunaVazia == 1) || (linhaVazia == 1 && colunaVazia == 0)))) && tabuleiroGrafico.getDificuldade() == 2){
 		
 			textTemp = buttons[linha][coluna].getText();
 			buttons[linha][coluna].setText(buttons[linhaVazia][colunaVazia].getText());
