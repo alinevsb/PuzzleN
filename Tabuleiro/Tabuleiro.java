@@ -20,9 +20,9 @@ public class Tabuleiro {
 	
 	public Tabuleiro(int nivel) {
 
-		if(nivel == 2){
-			this.linhas = 2;
-			this.colunas = 2;
+		if(nivel == 1){
+			this.linhas = 4;
+			this.colunas = 4;
 		}
 
 		else if(nivel == 0) {
@@ -30,9 +30,9 @@ public class Tabuleiro {
 			this.colunas = 3;
 		} 
 
-		else{
-			this.linhas = 4;
-			this.colunas = 4;
+		else if(nivel == 2){
+			this.linhas = 2;
+			this.colunas = 2;
 		}
 
 		matriz = new Celula[this.linhas][this.colunas];

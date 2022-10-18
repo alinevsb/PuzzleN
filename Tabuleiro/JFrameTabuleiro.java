@@ -18,9 +18,9 @@ public class JFrameTabuleiro extends JFrame {
 	//private boolean dificuldades;
 	//private Tabuleiro tabuleiro2 = new Tabuleiro(dificuldades);
 	private int dif;
-	private int puzzleNMaluco;
-	private Tabuleiro tabuleiro = new Tabuleiro(dif);
-	private JButtonCelula button[][];
+	private int puzzleNMaluco = 0;
+	private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco);
+	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -63,19 +63,32 @@ public class JFrameTabuleiro extends JFrame {
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			//configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+			configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
+            }
+        });
+
+		buttonDificuldades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+			configsDif(buttonJogar, buttonMaluco, buttonDificuldades, panel);
             }
         });
 	}
 
 
 
-	public void configsDif(){
+	public void configsDif(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel){
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 1));
+		this.remove(buttonJogar);
+		this.remove(buttonMaluco);
+		this.remove(buttonDificuldades);
+		this.remove(panel);
+		this.dispose();
 
-		this.add(panel);
+		JPanel panelDif = new JPanel();
+		panelDif.setLayout(new GridLayout(2, 1));
+
+		this.add(panelDif);
 		this.setTitle("DIFICULDADES");
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,15 +100,15 @@ public class JFrameTabuleiro extends JFrame {
 		JButton buttonMedio = new JButton("MEDIO");
 		JButton buttonDificil = new JButton("DIFICIL");
 
-		panel.add(buttonFacil);
-		panel.add(buttonMedio);
-		panel.add(buttonDificil);
-		panel.setVisible(true);
+		panelDif.add(buttonFacil);
+		panelDif.add(buttonMedio);
+		panelDif.add(buttonDificil);
+		panelDif.setVisible(true);
 
 		buttonFacil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 				dif = 2;
-				configs(buttonFacil, buttonMedio, buttonDificil, panel, dif);
+				//configs(buttonFacil, buttonMedio, buttonDificil, panel, dif);
             }
         });
 
@@ -126,7 +139,7 @@ public class JFrameTabuleiro extends JFrame {
 	}*/
 
 
-	public void configs(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel, int dificuldade) {
+	public void configs(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel) {
 
 		this.remove(panel);
 		this.remove(buttonJogar);
@@ -202,6 +215,10 @@ public class JFrameTabuleiro extends JFrame {
 
 	public Tabuleiro getTabuleiro(){
 		return tabuleiro;
+	}
+
+	public int getPuzzleNMaluco(){
+		return puzzleNMaluco;
 	}
 
 	public void fimDoJogo(){
