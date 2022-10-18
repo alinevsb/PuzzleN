@@ -15,11 +15,12 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class JFrameTabuleiro extends JFrame {
 
-	private boolean dificuldades;
-	private Tabuleiro tabuleiro2 = new Tabuleiro(dificuldades);
-	private boolean puzzleNMaluco;
-	private Tabuleiro tabuleiro = new Tabuleiro(puzzleNMaluco);
-	private JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+	//private boolean dificuldades;
+	//private Tabuleiro tabuleiro2 = new Tabuleiro(dificuldades);
+	private int dif;
+	private int puzzleNMaluco;
+	private Tabuleiro tabuleiro = new Tabuleiro(dif);
+	private JButtonCelula button[][];
 
 	public JFrameTabuleiro() {
 		configsMenu();
@@ -45,33 +46,92 @@ public class JFrameTabuleiro extends JFrame {
 		//this.setBackground(Color.blue);
 
 		//JButton buttonConfig = new JButton("Configurações");
-		JButton buttonDificuldades = new JButton("Dificuldades");
-		JButton checkBox = new JButton("PuzzleN maluco?");
+		JButton buttonDificuldades = new JButton("DIFICULDADES");
+		JButton buttonMaluco = new JButton("MODO PUZZLEN MALUCO");
 		JButton buttonJogar = new JButton("JOGAR!");
 
 		//buttonJogar.setBounds(200, 200, 200, 200);
 		panel.add(buttonJogar);
-		panel.add(checkBox);
+		panel.add(buttonMaluco);
 		panel.add(buttonDificuldades);
 		panel.setVisible(true);
 
-		puzzleNMaluco = checkBox.isSelected();
+		//puzzleNMaluco = checkBox.isSelected();
 
 		//System.out.println(checkBox.isSelected());
 
 		buttonJogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-			configs(buttonJogar, checkBox, panel);
+			//configs(buttonJogar, buttonMaluco, buttonDificuldades, panel);
             }
         });
 	}
-	
-	public void configs(JButton buttonJogar, JButton checkBox, JPanel panel) {
+
+
+
+	public void configsDif(){
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2, 1));
+
+		this.add(panel);
+		this.setTitle("DIFICULDADES");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(500, 600);
+		this.setResizable(false);
+		this.setLocation(450, 100);
+
+		JButton buttonFacil = new JButton("FACIL");
+		JButton buttonMedio = new JButton("MEDIO");
+		JButton buttonDificil = new JButton("DIFICIL");
+
+		panel.add(buttonFacil);
+		panel.add(buttonMedio);
+		panel.add(buttonDificil);
+		panel.setVisible(true);
+
+		buttonFacil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+				dif = 2;
+				configs(buttonFacil, buttonMedio, buttonDificil, panel, dif);
+            }
+        });
+
+		buttonMedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+            }
+        });
+
+		buttonDificil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+            }
+        });
+	}
+
+
+
+
+
+
+
+
+
+	/*public void atribuirBotaoTabuleiro(int dificuldade){
+		tabuleiro = new Tabuleiro(dificuldade);
+		JButtonCelula button[][] = new JButtonCelula[tabuleiro.getLinhas()][tabuleiro.getColunas()];
+	}*/
+
+
+	public void configs(JButton buttonJogar, JButton buttonDificuldades,JButton buttonMaluco, JPanel panel, int dificuldade) {
 
 		this.remove(panel);
 		this.remove(buttonJogar);
-		this.remove(checkBox);
+		this.remove(buttonMaluco);
+		this.remove(buttonDificuldades);
 		this.dispose();
 		
 		GridLayout grid = new GridLayout(tabuleiro.getLinhas(), tabuleiro.getColunas()); // linhas e colunas (malha) 

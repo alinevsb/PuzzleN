@@ -14,20 +14,25 @@ public class Tabuleiro {
 	
 	private int linhas;
 	private int colunas;
-	private boolean nivel;
+	private int nivel;
 	
 	private Celula[][] matriz; // private
 	
-	public Tabuleiro(boolean nivel) {
+	public Tabuleiro(int nivel) {
 
-		if(nivel == true){
-			this.linhas = 4;
-			this.colunas = 4;
+		if(nivel == 2){
+			this.linhas = 2;
+			this.colunas = 2;
 		}
 
-		else{
+		else if(nivel == 0) {
 			this.linhas = 3;
 			this.colunas = 3;
+		} 
+
+		else{
+			this.linhas = 4;
+			this.colunas = 4;
 		}
 
 		matriz = new Celula[this.linhas][this.colunas];
